@@ -5,7 +5,7 @@ let jumping = 0
 let counter = 0
 
 hole.addEventListener('animationiteration', () => {
-    const random = -((Math.random()*600)+150)
+    const random = -((Math.random()*300)+150)
     hole.style.top = random + "px"
     counter++
 })
@@ -13,14 +13,18 @@ hole.addEventListener('animationiteration', () => {
 setInterval(function(){
     const characterTop = 
     parseInt(window.getComputedStyle(character).getPropertyValue("top"))
-    if(jumping===0){
+    if(jumping==0){
         character.style.top = (characterTop + 3) + "px"
     }
-    if(characterTop>720){
-        alert("Game Over! score:" + counter)
+    const blockLeft = parseInt(window.getComputedStyle(block).getPropertyValue("left"))
+    const holeTop = parseInt(window.getComputedStyle(hole).getPropertyValue("top"))
+    const cTop = -(700 - characterTop)
+    if((characterTop>720) || ((blockLeft < 20)&&(blockLeft > -50)&&((cTop<holeTop)||(cTop>holeTop+130)))){
+        alert("Game Over! score: " + counter)
         character.style.top = 100 + "px"
+        counter=0
     }
-}, 10)
+},10)
 
 function jump () {
     jumping = 1
@@ -38,4 +42,3 @@ function jump () {
         }
             jumpCount++
     }, 10)
-}
