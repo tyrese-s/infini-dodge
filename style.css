@@ -22,7 +22,7 @@
 #block{
     width: 50px;
     height: 700px;
-    background-color: black;
+    background-color: rgb(56, 26, 8);
     position: relative;
     left: 400px;
     animation: block 2s infinite linear;
